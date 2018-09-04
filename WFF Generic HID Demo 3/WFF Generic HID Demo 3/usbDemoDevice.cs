@@ -127,6 +127,7 @@ namespace WFF_Generic_HID_Demo_3
                 }*/
                 total = inputBuffer[i+3];
                 total = total | (inputBuffer[i+4] << 8);
+                //This is a comment to show how to add to git hub
                 if (x % 3 == 0)
                 {
                     xQ.Enqueue(total);
