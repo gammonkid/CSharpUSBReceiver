@@ -1,0 +1,6 @@
+C:\Users\gammo\Pictures\drawings\WFF Generic HID Demo 3\usbGenericHidCommunications\bin\Debug\usbGenericHidCommunications.dll
+C:\Users\gammo\Pictures\drawings\WFF Generic HID Demo 3\usbGenericHidCommunications\bin\Debug\usbGenericHidCommunications.pdb
+C:\Users\gammo\Pictures\drawings\WFF Generic HID Demo 3\usbGenericHidCommunications\obj\Debug\usbGenericHidCommunications_3_0_0_0.csproj.CoreCompileInputs.cache
+C:\Users\gammo\Pictures\drawings\WFF Generic HID Demo 3\usbGenericHidCommunications\obj\Debug\usbGenericHidCommunications.dll
+C:\Users\gammo\Pictures\drawings\WFF Generic HID Demo 3\usbGenericHidCommunications\obj\Debug\usbGenericHidCommunications.pdb
+C:\Users\gammo\Pictures\drawings\WFF Generic HID Demo 3\usbGenericHidCommunications\obj\Debug\usbGenericHidCommunications_3_0_0_0.csprojResolveAssemblyReference.cache
