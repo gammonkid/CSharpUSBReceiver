@@ -192,6 +192,25 @@ namespace WFF_Generic_HID_Demo_3
             if (inputBuffer[2]==0x01) return true; else return false;
             }
 
+        // Adjust the sensitivity of data
+        void public int adjustData() {
+            /*
+            
+            // Declare our output buffer
+            Byte[] outputBuffer = new Byte[65];
+
+            // Declare our input buffer
+            Byte[] inputBuffer = new Byte[65];
+
+            // Byte 0 must be set to 0
+            outputBuffer[0] = 0;
+
+            // A UI that lets the user adjust the frequency of the anticipated data
+
+
+            */
+        }
+
         // Collect debug information from the device
         public String collectDebug()
             {/*
