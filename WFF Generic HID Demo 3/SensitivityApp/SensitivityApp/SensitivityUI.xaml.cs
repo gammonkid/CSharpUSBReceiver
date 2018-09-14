@@ -19,8 +19,10 @@ namespace SensitivityApp
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
+    
     public partial class MainWindow : Window
     {
+        public double SliderValue;
         public MainWindow()
         {
             InitializeComponent();
@@ -29,11 +31,17 @@ namespace SensitivityApp
         private void closeButton_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+            //send data from slider value back to a usable location
         }
 
         private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
+            SliderValue = valueSlider.Value;
+            textbox.Text = SliderValue.ToString();
+        }
 
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
         }
     }
 }

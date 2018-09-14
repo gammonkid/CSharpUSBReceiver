@@ -193,7 +193,8 @@ namespace WFF_Generic_HID_Demo_3
             }
 
         // Adjust the sensitivity of data
-        void public int adjustData() {
+        public int adjustdata() {
+            return 0;
             /*
             
             // Declare our output buffer

@@ -6,14 +6,14 @@
         xmlns:local="clr-namespace:SensitivityApp"
         mc:Ignorable="d"
         Title="Sensitivity Adjuster" Height="450" Width="800">
-    <Grid>
-        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="163" Margin="189,46,0,0" VerticalAlignment="Top" Width="406">
-            <TextBox Text="{Binding Value, ElementName=Slider, UpdateSourceTrigger=PropertyChanged}" TextAlignment="Right" Margin="172,61,182,67" />
-        </Border>
-        <TextBlock x:Name="AdjustSense" HorizontalAlignment="Left" Margin="287,83,0,0" TextWrapping="Wrap" Text="Adjust the sensitivity of this device." VerticalAlignment="Top"/>
-        <CheckBox Content="CheckBox" HorizontalAlignment="Left" Margin="-103,-38,0,0" VerticalAlignment="Top"/>
-        <Slider x:Name="Slider" HorizontalAlignment="Left" Margin="259,138,0,0" VerticalAlignment="Top" Height="71" Width="240" Maximum="100" TickPlacement="BottomRight" TickFrequency="5" IsSnapToTickEnabled="True" ValueChanged="Slider_ValueChanged" />
-    <Button x:Name="closeButton" Content="Close" HorizontalAlignment="Left" Margin="348,171,0,0" VerticalAlignment="Top" Width="75" Click="closeButton_Click"/>
+	<Grid>
+		<Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="163" Margin="189,46,0,0" VerticalAlignment="Top" Width="406">
+			<TextBox x:Name="textbox" Text="{Binding Value, ElementName=valueSlider, UpdateSourceTrigger=PropertyChanged}" TextAlignment="Right" Margin="334,58,20,70" TextChanged="TextBox_TextChanged" />
+		</Border>
+		<TextBlock x:Name="AdjustSense" HorizontalAlignment="Left" Margin="287,83,0,0" TextWrapping="Wrap" Text="Adjust the sensitivity of this device." VerticalAlignment="Top"/>
+		<CheckBox Content="CheckBox" HorizontalAlignment="Left" Margin="-103,-38,0,0" VerticalAlignment="Top"/>
+		<Slider x:Name="valueSlider" HorizontalAlignment="Left" Margin="202,104,0,0" VerticalAlignment="Top" Height="71" Width="314" Maximum="1024" TickPlacement="BottomRight" IsSnapToTickEnabled="True" ValueChanged="Slider_ValueChanged" />
+		<Button x:Name="closeButton" Content="Close" HorizontalAlignment="Left" Margin="348,171,0,0" VerticalAlignment="Top" Width="75" Click="closeButton_Click"/>
 
-  </Grid>
+	</Grid>
 </Window>

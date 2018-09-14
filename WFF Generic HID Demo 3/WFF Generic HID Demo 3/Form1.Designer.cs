@@ -48,6 +48,8 @@
             this.GraphSpace = new System.Windows.Forms.PictureBox();
             this.MinValue = new System.Windows.Forms.Label();
             this.MaxValue = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
             this.statusStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GraphSpace)).BeginInit();
@@ -203,9 +205,9 @@
             // 
             // GraphSpace
             // 
-            this.GraphSpace.Location = new System.Drawing.Point(10, 45);
+            this.GraphSpace.Location = new System.Drawing.Point(10, 110);
             this.GraphSpace.Name = "GraphSpace";
-            this.GraphSpace.Size = new System.Drawing.Size(862, 322);
+            this.GraphSpace.Size = new System.Drawing.Size(862, 257);
             this.GraphSpace.TabIndex = 11;
             this.GraphSpace.TabStop = false;
             // 
@@ -227,11 +229,33 @@
             this.MaxValue.TabIndex = 15;
             this.MaxValue.Text = "Unknown";
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(0, 57);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(246, 23);
+            this.button1.TabIndex = 17;
+            this.button1.Text = "To Sensitivity app";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(252, 62);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(120, 13);
+            this.label5.TabIndex = 18;
+            this.label5.Text = "Current Sensitivity Level";
+            this.label5.Click += new System.EventHandler(this.label5_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(895, 394);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.MinValue);
             this.Controls.Add(this.MaxValue);
             this.Controls.Add(this.GraphSpace);
@@ -280,6 +304,8 @@
         private System.Windows.Forms.PictureBox GraphSpace;
         private System.Windows.Forms.Label MinValue;
         private System.Windows.Forms.Label MaxValue;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label5;
     }
     }
 

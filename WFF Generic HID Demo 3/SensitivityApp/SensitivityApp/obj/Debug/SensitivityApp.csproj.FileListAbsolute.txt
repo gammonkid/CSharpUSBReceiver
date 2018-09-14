@@ -12,3 +12,4 @@ C:\Users\gammo\Desktop\ClientSide\CSharpUSBReceiver\WFF Generic HID Demo 3\Sensi
 C:\Users\gammo\Desktop\ClientSide\CSharpUSBReceiver\WFF Generic HID Demo 3\SensitivityApp\SensitivityApp\obj\Debug\SensitivityApp.csproj.CoreCompileInputs.cache
 C:\Users\gammo\Desktop\ClientSide\CSharpUSBReceiver\WFF Generic HID Demo 3\SensitivityApp\SensitivityApp\obj\Debug\SensitivityApp.exe
 C:\Users\gammo\Desktop\ClientSide\CSharpUSBReceiver\WFF Generic HID Demo 3\SensitivityApp\SensitivityApp\obj\Debug\SensitivityApp.pdb
+C:\Users\gammo\Desktop\ClientSide\CSharpUSBReceiver\WFF Generic HID Demo 3\SensitivityApp\SensitivityApp\obj\Debug\SensitivityApp.csprojResolveAssemblyReference.cache

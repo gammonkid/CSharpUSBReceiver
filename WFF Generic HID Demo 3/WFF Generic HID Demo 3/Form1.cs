@@ -156,6 +156,13 @@ namespace WFF_Generic_HID_Demo_3
             max = min = 512;
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            //make it so that the sensitivity app is opened and sends the data back to a place where it can be sent
+            //to the device.
+        }
+
+
         // Collect debug timer has ticked
         private void debugCollectionTimer_Tick(object sender, EventArgs e)
             {
