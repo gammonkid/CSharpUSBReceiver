@@ -30,5 +30,10 @@ namespace SensitivityApp
         {
             this.Close();
         }
+
+        private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+
+        }
     }
 }
