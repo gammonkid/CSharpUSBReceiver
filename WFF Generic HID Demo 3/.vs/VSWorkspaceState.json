@@ -1,12 +1,13 @@
 {
   "ExpandedNodes": [
     "",
-    "\\usbGenericHidCommunications",
+    "\\SensitivityApp",
+    "\\SensitivityApp\\SensitivityApp",
+    "\\SensitivityApp\\SensitivityApp\\obj",
     "\\WFF Generic HID Demo 3",
     "\\WFF Generic HID Demo 3\\bin",
-    "\\WFF Generic HID Demo 3\\obj",
-    "\\WFF Generic HID Demo 3\\obj\\x86"
+    "\\WFF Generic HID Demo 3\\obj"
   ],
-  "SelectedNode": "\\WFF Generic HID Demo 3\\Program.cs",
+  "SelectedNode": "\\SensitivityApp\\SensitivityApp.sln",
   "PreviewInSolutionExplorer": false
 }
