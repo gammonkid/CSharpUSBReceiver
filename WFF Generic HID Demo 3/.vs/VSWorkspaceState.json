@@ -1,13 +1,13 @@
 {
   "ExpandedNodes": [
     "",
+    "\\SensitivityAdjustmentModule",
     "\\SensitivityApp",
     "\\SensitivityApp\\SensitivityApp",
     "\\SensitivityApp\\SensitivityApp\\obj",
     "\\WFF Generic HID Demo 3",
-    "\\WFF Generic HID Demo 3\\bin",
     "\\WFF Generic HID Demo 3\\obj"
   ],
-  "SelectedNode": "\\SensitivityApp\\SensitivityApp.sln",
+  "SelectedNode": "\\WFF Generic HID Demo 3",
   "PreviewInSolutionExplorer": false
 }
