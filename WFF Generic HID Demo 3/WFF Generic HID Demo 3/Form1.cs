@@ -161,9 +161,12 @@ namespace WFF_Generic_HID_Demo_3
             //make it so that the sensitivity app is opened and sends the data back to a place where it can be sent
             //to the device.
 
-            MainWindow settings = new MainWindow();
+            using (MainWindow settings = new MainWindow())
+            {
+                if (settings.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                    settings.Show();
+            }
 
-            settings.Show();
         }
 
 

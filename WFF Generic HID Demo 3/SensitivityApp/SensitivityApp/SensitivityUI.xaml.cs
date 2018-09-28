@@ -23,6 +23,8 @@ namespace SensitivityApp
     
     public partial class MainWindow : Window
     {
+        public string SelectedText { get; set; }
+
         public double SliderValue;
         public MainWindow()
         {
@@ -31,7 +33,8 @@ namespace SensitivityApp
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
-            this.DialogResult = DialogResult.OK;
+
+            //this.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.Close();
             //send data from slider value back to a usable location
         }
@@ -44,6 +47,7 @@ namespace SensitivityApp
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
+            //SelectedText = TextBox.Text;
         }
     }
 }
