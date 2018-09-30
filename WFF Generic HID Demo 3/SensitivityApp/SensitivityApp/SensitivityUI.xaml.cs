@@ -34,7 +34,7 @@ namespace SensitivityApp
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
 
-            //this.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.Close();
             //send data from slider value back to a usable location
         }
