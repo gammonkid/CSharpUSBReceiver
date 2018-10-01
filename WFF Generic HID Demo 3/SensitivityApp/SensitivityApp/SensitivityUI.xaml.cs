@@ -23,18 +23,19 @@ namespace SensitivityApp
     
     public partial class MainWindow : Window
     {
-        public string SelectedText { get; set; }
+        Window opener;
 
         public double SliderValue;
-        public MainWindow()
+        public MainWindow(Window parentForm)
         {
             InitializeComponent();
+            opener = parentForm;
         }
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
 
-            this.DialogResult = System.Windows.Forms.DialogResult.OK;
+            opener.Close();
             this.Close();
             //send data from slider value back to a usable location
         }

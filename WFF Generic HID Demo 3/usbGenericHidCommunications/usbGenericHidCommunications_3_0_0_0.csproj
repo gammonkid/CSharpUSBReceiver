@@ -111,12 +111,6 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\SensitivityApp\SensitivityApp\SensitivityApp.csproj">
-      <Project>{accb29db-b848-4a98-8fc4-d6404321d7c9}</Project>
-      <Name>SensitivityApp</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

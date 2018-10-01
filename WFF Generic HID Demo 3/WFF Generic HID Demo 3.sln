@@ -6,6 +6,9 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WFF Generic HID Demo 3", "WFF Generic HID Demo 3\WFF Generic HID Demo 3.csproj", "{80190EFB-2979-4AC4-BF89-55C4BF779AC4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "usbGenericHidCommunications_3_0_0_0", "usbGenericHidCommunications\usbGenericHidCommunications_3_0_0_0.csproj", "{C999B884-6EC3-4AB6-AEF5-AD4D7E1E4FA9}"
+	ProjectSection(ProjectDependencies) = postProject
+		{ACCB29DB-B848-4A98-8FC4-D6404321D7C9} = {ACCB29DB-B848-4A98-8FC4-D6404321D7C9}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SensitivityApp", "SensitivityApp\SensitivityApp\SensitivityApp.csproj", "{ACCB29DB-B848-4A98-8FC4-D6404321D7C9}"
 EndProject

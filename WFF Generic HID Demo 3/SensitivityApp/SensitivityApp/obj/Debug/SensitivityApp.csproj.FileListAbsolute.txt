@@ -22,9 +22,9 @@ C:\Users\Brad\Desktop\c#\CSharpUSBReceiver\WFF Generic HID Demo 3\SensitivityApp
 C:\Users\Brad\Desktop\c#\CSharpUSBReceiver\WFF Generic HID Demo 3\SensitivityApp\SensitivityApp\obj\Debug\SensitivityApp_MarkupCompile.lref
 C:\Users\Brad\Desktop\c#\CSharpUSBReceiver\WFF Generic HID Demo 3\SensitivityApp\SensitivityApp\obj\Debug\SensitivityUI.baml
 C:\Users\Brad\Desktop\c#\CSharpUSBReceiver\WFF Generic HID Demo 3\SensitivityApp\SensitivityApp\obj\Debug\SensitivityApp.g.resources
-C:\Users\Brad\Desktop\c#\CSharpUSBReceiver\WFF Generic HID Demo 3\SensitivityApp\SensitivityApp\obj\Debug\SensitivityApp.Properties.Resources.resources
 C:\Users\Brad\Desktop\c#\CSharpUSBReceiver\WFF Generic HID Demo 3\SensitivityApp\SensitivityApp\obj\Debug\SensitivityApp.csproj.GenerateResource.cache
 C:\Users\Brad\Desktop\c#\CSharpUSBReceiver\WFF Generic HID Demo 3\SensitivityApp\SensitivityApp\obj\Debug\SensitivityApp.csproj.CoreCompileInputs.cache
 C:\Users\Brad\Desktop\c#\CSharpUSBReceiver\WFF Generic HID Demo 3\SensitivityApp\SensitivityApp\obj\Debug\SensitivityApp.exe
 C:\Users\Brad\Desktop\c#\CSharpUSBReceiver\WFF Generic HID Demo 3\SensitivityApp\SensitivityApp\obj\Debug\SensitivityApp.pdb
 C:\Users\Brad\Desktop\c#\CSharpUSBReceiver\WFF Generic HID Demo 3\SensitivityApp\SensitivityApp\obj\Debug\SensitivityApp.csprojAssemblyReference.cache
+C:\Users\Brad\Desktop\c#\CSharpUSBReceiver\WFF Generic HID Demo 3\SensitivityApp\SensitivityApp\obj\Debug\SensitivityApp.Resources.resources
