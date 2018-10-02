@@ -156,6 +156,19 @@ namespace WFF_Generic_HID_Demo_3
             max = min = 512;
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Form2 f = new Form2();
+            if (int.TryParse(returnValue.Text, out int val))
+            {
+                f.init = val;
+            }
+            if (f.ShowDialog() == DialogResult.OK)
+            {
+                returnValue.Text = f.Value.ToString();
+            };
+        }
+
         // Collect debug timer has ticked
         private void debugCollectionTimer_Tick(object sender, EventArgs e)
             {

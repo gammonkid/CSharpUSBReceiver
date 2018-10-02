@@ -48,6 +48,8 @@
             this.GraphSpace = new System.Windows.Forms.PictureBox();
             this.MinValue = new System.Windows.Forms.Label();
             this.MaxValue = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.returnValue = new System.Windows.Forms.TextBox();
             this.statusStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GraphSpace)).BeginInit();
@@ -203,9 +205,9 @@
             // 
             // GraphSpace
             // 
-            this.GraphSpace.Location = new System.Drawing.Point(10, 45);
+            this.GraphSpace.Location = new System.Drawing.Point(10, 141);
             this.GraphSpace.Name = "GraphSpace";
-            this.GraphSpace.Size = new System.Drawing.Size(862, 322);
+            this.GraphSpace.Size = new System.Drawing.Size(862, 226);
             this.GraphSpace.TabIndex = 11;
             this.GraphSpace.TabStop = false;
             // 
@@ -227,11 +229,30 @@
             this.MaxValue.TabIndex = 15;
             this.MaxValue.Text = "Unknown";
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(13, 78);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(114, 23);
+            this.button1.TabIndex = 17;
+            this.button1.Text = "to other form";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // returnValue
+            // 
+            this.returnValue.Location = new System.Drawing.Point(140, 80);
+            this.returnValue.Name = "returnValue";
+            this.returnValue.Size = new System.Drawing.Size(73, 20);
+            this.returnValue.TabIndex = 18;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(895, 394);
+            this.Controls.Add(this.returnValue);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.MinValue);
             this.Controls.Add(this.MaxValue);
             this.Controls.Add(this.GraphSpace);
@@ -280,6 +301,8 @@
         private System.Windows.Forms.PictureBox GraphSpace;
         private System.Windows.Forms.Label MinValue;
         private System.Windows.Forms.Label MaxValue;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox returnValue;
     }
     }
 
