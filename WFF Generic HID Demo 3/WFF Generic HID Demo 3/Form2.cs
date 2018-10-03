@@ -16,12 +16,12 @@ namespace WFF_Generic_HID_Demo_3
             InitializeComponent();
         }
 
-        private int val;
+        private int myVal;
 
-        public int Value
+        public int MyVal
         {
-            get { return val; }
-            set { val = value; }
+            get { return myVal; }
+            set { myVal = value; }
         }
         public int init
         {
@@ -32,18 +32,18 @@ namespace WFF_Generic_HID_Demo_3
         }
         private void label1_Click(object sender, EventArgs e)
         {
-
+            //MyVal = Int32.Parse(Sensitivity.Text);
         }
 
         private void trackBar1_Scroll(object sender, EventArgs e)
         {
-            Value = trackBar1.Value;
-            Sensitivity.Text = Value.ToString();
+            MyVal = trackBar1.Value;
+            Sensitivity.Text = MyVal.ToString();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            MyVal = Int32.Parse(Sensitivity.Text);
         }
     }
 }

@@ -37,9 +37,11 @@
             // Sensitivity
             // 
             this.Sensitivity.AutoSize = true;
+            this.Sensitivity.BackColor = System.Drawing.SystemColors.Control;
+            this.Sensitivity.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.Sensitivity.Location = new System.Drawing.Point(108, 79);
             this.Sensitivity.Name = "Sensitivity";
-            this.Sensitivity.Size = new System.Drawing.Size(54, 13);
+            this.Sensitivity.Size = new System.Drawing.Size(56, 15);
             this.Sensitivity.TabIndex = 0;
             this.Sensitivity.Text = "Sensitivity";
             this.Sensitivity.Click += new System.EventHandler(this.label1_Click);
@@ -57,11 +59,11 @@
             // 
             this.returnButton.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.returnButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.returnButton.Location = new System.Drawing.Point(101, 117);
+            this.returnButton.Location = new System.Drawing.Point(99, 146);
             this.returnButton.Name = "returnButton";
             this.returnButton.Size = new System.Drawing.Size(75, 23);
             this.returnButton.TabIndex = 2;
-            this.returnButton.Text = "button1";
+            this.returnButton.Text = "OK";
             this.returnButton.UseVisualStyleBackColor = true;
             this.returnButton.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -74,7 +76,7 @@
             this.Controls.Add(this.trackBar1);
             this.Controls.Add(this.Sensitivity);
             this.Name = "Form2";
-            this.Text = "Form2";
+            this.Text = "Set Sensitivity";
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

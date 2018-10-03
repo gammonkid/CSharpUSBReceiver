@@ -165,7 +165,7 @@ namespace WFF_Generic_HID_Demo_3
             }
             if (f.ShowDialog() == DialogResult.OK)
             {
-                returnValue.Text = f.Value.ToString();
+                returnValue.Text = f.MyVal.ToString();
             };
         }
 
