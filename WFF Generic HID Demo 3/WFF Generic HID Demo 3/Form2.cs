@@ -43,7 +43,7 @@ namespace WFF_Generic_HID_Demo_3
 
         private void button1_Click(object sender, EventArgs e)
         {
-            MyVal = Int32.Parse(Sensitivity.Text);
+            //MyVal = Int32.Parse(Sensitivity.Text);
         }
     }
 }

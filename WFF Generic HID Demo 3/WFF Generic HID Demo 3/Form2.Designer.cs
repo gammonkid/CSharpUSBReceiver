@@ -38,12 +38,13 @@
             // 
             this.Sensitivity.AutoSize = true;
             this.Sensitivity.BackColor = System.Drawing.SystemColors.Control;
-            this.Sensitivity.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.Sensitivity.Location = new System.Drawing.Point(108, 79);
+            this.Sensitivity.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Sensitivity.Location = new System.Drawing.Point(47, 57);
             this.Sensitivity.Name = "Sensitivity";
-            this.Sensitivity.Size = new System.Drawing.Size(56, 15);
+            this.Sensitivity.Size = new System.Drawing.Size(193, 15);
             this.Sensitivity.TabIndex = 0;
-            this.Sensitivity.Text = "Sensitivity";
+            this.Sensitivity.Text = "Move the slider to adjust the sensitivity.";
+            this.Sensitivity.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.Sensitivity.Click += new System.EventHandler(this.label1_Click);
             // 
             // trackBar1

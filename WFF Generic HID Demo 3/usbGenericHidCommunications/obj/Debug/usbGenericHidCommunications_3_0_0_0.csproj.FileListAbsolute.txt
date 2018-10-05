@@ -16,3 +16,9 @@ C:\Users\gammo\Desktop\ClientSide\CSharpUSBReceiver\WFF Generic HID Demo 3\usbGe
 C:\Users\gammo\Desktop\ClientSide\CSharpUSBReceiver\WFF Generic HID Demo 3\usbGenericHidCommunications\obj\Debug\usbGenericHidCommunications_3_0_0_0.csproj.CoreCompileInputs.cache
 C:\Users\gammo\Desktop\ClientSide\CSharpUSBReceiver\WFF Generic HID Demo 3\usbGenericHidCommunications\obj\Debug\usbGenericHidCommunications.dll
 C:\Users\gammo\Desktop\ClientSide\CSharpUSBReceiver\WFF Generic HID Demo 3\usbGenericHidCommunications\obj\Debug\usbGenericHidCommunications.pdb
+C:\Users\Brad\Desktop\c#\CSharpUSBReceiver\WFF Generic HID Demo 3\usbGenericHidCommunications\bin\Debug\usbGenericHidCommunications.dll
+C:\Users\Brad\Desktop\c#\CSharpUSBReceiver\WFF Generic HID Demo 3\usbGenericHidCommunications\bin\Debug\usbGenericHidCommunications.pdb
+C:\Users\Brad\Desktop\c#\CSharpUSBReceiver\WFF Generic HID Demo 3\usbGenericHidCommunications\obj\Debug\usbGenericHidCommunications_3_0_0_0.csprojAssemblyReference.cache
+C:\Users\Brad\Desktop\c#\CSharpUSBReceiver\WFF Generic HID Demo 3\usbGenericHidCommunications\obj\Debug\usbGenericHidCommunications_3_0_0_0.csproj.CoreCompileInputs.cache
+C:\Users\Brad\Desktop\c#\CSharpUSBReceiver\WFF Generic HID Demo 3\usbGenericHidCommunications\obj\Debug\usbGenericHidCommunications.dll
+C:\Users\Brad\Desktop\c#\CSharpUSBReceiver\WFF Generic HID Demo 3\usbGenericHidCommunications\obj\Debug\usbGenericHidCommunications.pdb

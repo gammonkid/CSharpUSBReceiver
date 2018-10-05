@@ -44,3 +44,4 @@ C:\Users\Brad\Desktop\c#\CSharpUSBReceiver\WFF Generic HID Demo 3\WFF Generic HI
 C:\Users\Brad\Desktop\c#\CSharpUSBReceiver\WFF Generic HID Demo 3\WFF Generic HID Demo 3\obj\x86\Debug\WFF Generic HID Demo 3.csproj.CopyComplete
 C:\Users\Brad\Desktop\c#\CSharpUSBReceiver\WFF Generic HID Demo 3\WFF Generic HID Demo 3\obj\x86\Debug\WFF Generic HID Demo 3.exe
 C:\Users\Brad\Desktop\c#\CSharpUSBReceiver\WFF Generic HID Demo 3\WFF Generic HID Demo 3\obj\x86\Debug\WFF Generic HID Demo 3.pdb
+C:\Users\Brad\Desktop\c#\CSharpUSBReceiver\WFF Generic HID Demo 3\WFF Generic HID Demo 3\obj\x86\Debug\WFF Generic HID Demo 3.csprojAssemblyReference.cache
