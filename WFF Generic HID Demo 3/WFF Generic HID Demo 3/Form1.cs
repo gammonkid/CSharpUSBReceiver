@@ -161,8 +161,12 @@ namespace WFF_Generic_HID_Demo_3
             Form2 f = new Form2();
             if (int.TryParse(returnValue.Text, out int val))
             {
+                val = (val > 512) ? 512 : val;
+                val = (val < 0) ? 0 : val;
                 f.init = val;
             }
+
+            
             if (f.ShowDialog() == DialogResult.OK)
             {
                 returnValue.Text = f.MyVal.ToString();
