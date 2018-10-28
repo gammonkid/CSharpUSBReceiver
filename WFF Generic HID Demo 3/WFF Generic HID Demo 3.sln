@@ -1,6 +1,8 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.12
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WFF Generic HID Demo 3", "WFF Generic HID Demo 3\WFF Generic HID Demo 3.csproj", "{80190EFB-2979-4AC4-BF89-55C4BF779AC4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "usbGenericHidCommunications_3_0_0_0", "usbGenericHidCommunications\usbGenericHidCommunications_3_0_0_0.csproj", "{C999B884-6EC3-4AB6-AEF5-AD4D7E1E4FA9}"
@@ -38,5 +40,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {623FBBDE-D125-4C61-AF3A-1B3D2E5892F8}
 	EndGlobalSection
 EndGlobal
