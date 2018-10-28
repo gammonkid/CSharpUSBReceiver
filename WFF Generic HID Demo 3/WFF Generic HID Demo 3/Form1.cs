@@ -39,28 +39,98 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using MySql.Data.MySqlClient;
 
 namespace WFF_Generic_HID_Demo_3
     {
     public partial class Form1 : Form
         {
-        private const int Offset = 350;
-        private const int Spread = 4;
-        private Graphics graphdrawx;
-        private Graphics graphdrawy;
-        private Graphics graphdrawz;
-        Pen Redpen = new Pen(Color.Red,4);
-        Pen Bluepen = new Pen(Color.Blue,4);
-        Pen Greenpen = new Pen(Color.Green,4);
-        Pen Blackpen = new Pen(Color.Black, 2);
-        int max= 512,  min = 512;
+        List<TextBox> teamNames = new List<TextBox>();
+        private MySqlConnection myConnection;
+        private string server;
+        private string database;
+        private string uid;
+        private string password;
+        private int year = DateTime.Now.Year;
+        private Panel scrollGroup = new Panel();
+        private int YOffset = 0;
+        private int index = 0;
 
         public Form1()
             {
             InitializeComponent();
-            graphdrawx= GraphSpace.CreateGraphics();
-            graphdrawy = GraphSpace.CreateGraphics();
-            graphdrawz = GraphSpace.CreateGraphics();
+            lblYear.Text += year.ToString();
+            
+            scrollGroup.AutoScroll = true;
+            scrollGroup.Location = new System.Drawing.Point(0, 0);
+            scrollGroup.Size = new System.Drawing.Size(100, 350);
+            server = "localhost";
+            database = "concussion";
+            uid = "root";
+            password = "root";
+            string connectionString;
+            connectionString = "SERVER=" + server + ";" + "DATABASE=" +
+            database + ";" + "UID=" + uid + ";" + "PASSWORD=" + password + ";";
+            myConnection = new MySqlConnection(connectionString);
+
+            try
+            {
+                if (myConnection.State != ConnectionState.Open)
+                    myConnection.Open();
+                //label1.Text = "connection opened";
+                string sqlcmd = "select * from teams";
+                MySqlCommand cmd = new MySqlCommand(sqlcmd, myConnection);
+                MySqlDataReader dr = cmd.ExecuteReader();
+                
+                while (dr.Read())
+                {
+                    TextBox team = new TextBox();
+
+                    //Country countr = new Country();
+                    //city.Name = index.ToString();
+                    //countr.Code = dr["Code"].ToString();
+                    //countr.Name = city.Text = dr["Name"].ToString();
+                    //countr.Population = Convert.ToInt32(dr["Population"]);
+                    team.Text = dr["name"].ToString();
+                    team.Name = index.ToString();
+                    team.Location = new System.Drawing.Point(0, YOffset); ;
+                    teamNames.Add(team);
+                    //countryList.Add(countr);
+                    YOffset += 20;
+                    team.Click += arbitraryLabelClicked;
+
+                    index++;
+                }
+                foreach (TextBox text in teamNames)
+                {
+                    scrollGroup.Controls.Add(text);
+                }
+                this.Controls.Add(scrollGroup);
+                myConnection.Close();
+
+
+
+            }
+            catch (MySqlException ex)
+            {
+                //When handling errors, you can your application's response based 
+                //on the error number.
+                //The two most common error numbers when connecting are as follows:
+                //0: Cannot connect to server.
+                //1045: Invalid user name and/or password.
+                switch (ex.Number)
+                {
+                    case 0:
+                        MessageBox.Show("Cannot connect to server.  Contact administrator");
+                        break;
+
+                    case 1045:
+                        MessageBox.Show("Invalid username/password, please try again");
+                        break;
+                }
+                //return false;
+            }
+
             // Create the USB reference device object (passing VID and PID)
             theUsbDemoDevice = new usbDemoDevice(0x04D8, 0x003F);
 
@@ -70,7 +140,23 @@ namespace WFF_Generic_HID_Demo_3
             // Perform an initial search for the target device
             theUsbDemoDevice.findTargetDevice();
             }
-         
+
+        private void arbitraryLabelClicked(object sender, EventArgs e)
+        {
+
+            TextBox txt = sender as TextBox;
+            MessageBox.Show(txt.Text);
+           // MessageBox.Show(countryList[Convert.ToInt32(txt.Name)].Code);
+            //Country selected = countryList.FindLast(x => x.Name.Contains(txt.Text));
+            //Cities c = new Cities(selected, myConnection);
+            //c.Show();
+            //this.Visible = false;
+            //if (c.IsDisposed)
+            //{
+            //    this.Visible = true;
+            //}
+        }
+
         // Create an instance of the USB reference device
         private usbDemoDevice theUsbDemoDevice;
 
@@ -114,47 +200,12 @@ namespace WFF_Generic_HID_Demo_3
         // Timer 1 has ticked, poll the USB device for status
         private void timer1_Tick(object sender, EventArgs e)
             {
-            if(pause.Checked&&debugCollectionTimer.Enabled)
-            {
-                debugCollectionTimer.Enabled = false;
-            }
-            else if(!debugCollectionTimer.Enabled&&!pause.Checked)
-            {
-                debugCollectionTimer.Enabled = true;
-            }
-            if (theUsbDemoDevice.isDeviceAttached)
-                {
-                // Read the push button state
-                this.MaxValue.Text = max.ToString();
-                this.MinValue.Text = min.ToString();
-                int datasize = theUsbDemoDevice.readData();
-
-                pushButtonStateLabel.Text = datasize.ToString();
-
-
-                // Read the LED state
-                bool ledState = theUsbDemoDevice.readLedState();
-                
-                if (ledState == true) this.ledStateLabel.Text = "Toggle on";
-                else this.ledStateLabel.Text = "Toggle off";
-                
-            }
+            timer1.Enabled = false;
+            lblStatus.Text = "waiting";
+            
             }
 
-        private void xGraph_CheckedChanged(object sender, EventArgs e)
-        {
-            max = min = 512;
-        }
-
-        private void yGraph_CheckedChanged(object sender, EventArgs e)
-        {
-            max = min = 512;
-        }
-
-        private void zGraph_CheckedChanged(object sender, EventArgs e)
-        {
-            max = min = 512;
-        }
+        
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -176,81 +227,75 @@ namespace WFF_Generic_HID_Demo_3
         // Collect debug timer has ticked
         private void debugCollectionTimer_Tick(object sender, EventArgs e)
             {
-                int previous = 0;
-                int count = 0;
-                if (xGraph.Checked)
-                {
-                    graphdrawx.Clear(Color.White);
-                    graphdrawx.DrawLine(Blackpen, 0, max-Offset, 1000, max-Offset);
-                    graphdrawx.DrawLine(Blackpen, 0, min-Offset, 1000, min-Offset);
-                    foreach (int value in theUsbDemoDevice.xQ)
-                    {
-                        if (count == 0)
-                        {
-                            graphdrawx.DrawLine(Redpen, count, value - Offset, count, value - Offset);
-                        }
-                        else
-                        {
-                            graphdrawx.DrawLine(Redpen, count - Spread, previous - Offset, count, value - Offset);
-                        }
-                        if (value> max)
-                            max = value;
-                        if (value< min)
-                            min = value;
-                        count += Spread;
-                        previous = value;
-                        //this.ledStateLabel.Text = (value.ToString());
-
-                    }
-                }
-                if (yGraph.Checked)
-                {
-                    graphdrawy.Clear(Color.White);
-                    graphdrawx.DrawLine(Blackpen, 0, max - Offset, 1000, max - Offset);
-                    graphdrawx.DrawLine(Blackpen, 0, min - Offset, 1000, min - Offset);
-
-                foreach (int value in theUsbDemoDevice.yQ)
-                    {
-                        if (count == 0)
-                        {
-                            graphdrawy.DrawLine(Greenpen, count, value - Offset, count, value - Offset);
-                        }
-                        else
-                        {
-                            graphdrawy.DrawLine(Greenpen, count - Spread, previous - Offset, count, value - Offset);
-                        }
-                        if (value > max)
-                            max = value;
-                        if (value < min)
-                            min = value;
-                        count += Spread;
-                        previous = value;
-                    }
-                }
-                if (zGraph.Checked)
-                {
-                    graphdrawz.Clear(Color.White);
-                    graphdrawx.DrawLine(Blackpen, 0, max - Offset, 1000, max - Offset);
-                    graphdrawx.DrawLine(Blackpen, 0, min - Offset, 1000, min - Offset);
-                foreach (int value in theUsbDemoDevice.zQ)
-                    {
-                        if (count == 0)
-                        {
-                            graphdrawz.DrawLine(Bluepen, count, value - Offset, count, value - Offset);
-                        }
-                        else
-                        {
-                            graphdrawz.DrawLine(Bluepen, count - Spread, previous - Offset, count, value - Offset);
-                        }
-                        if (value > max)
-                            max = value;
-                        if (value < min)
-                            min = value;
-                        count += Spread;
-                        previous = value;
-                    }
-                }
+                
 
             }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            lblStatus.Text = "attempting to send";
+            try
+            {
+                if (myConnection.State != ConnectionState.Open)
+                    myConnection.Open();
+                //label1.Text = "connection opened";
+                string sqlcmd = "INSERT INTO teams(name,year) VALUES('" + txtName.Text + "'," + year + ")";
+                MySqlCommand cmd = new MySqlCommand(sqlcmd, myConnection);
+                MySqlDataReader dr = cmd.ExecuteReader();
+                myConnection.Close();
+                
+                timer1.Enabled = true;
+
+                TextBox team = new TextBox();
+
+                //Country countr = new Country();
+                //city.Name = index.ToString();
+                //countr.Code = dr["Code"].ToString();
+                //countr.Name = city.Text = dr["Name"].ToString();
+                //countr.Population = Convert.ToInt32(dr["Population"]);
+                team.Text = txtName.Text;
+                team.Name = index.ToString();
+                int previous = index - 1;
+                scrollGroup.ScrollControlIntoView(teamNames[0]);
+                team.Location = new System.Drawing.Point(0, YOffset);
+                
+                //countryList.Add(countr);
+                YOffset += 20;
+                team.Click += arbitraryLabelClicked;
+                scrollGroup.Controls.Add(team);
+                index++;
+                txtName.Text = "";
+                lblStatus.Text = "send successful";
+
+
+
+
+            }
+            catch (MySqlException ex)
+            {
+                lblStatus.Text = "send not successful";
+                //When handling errors, you can your application's response based 
+                //on the error number.
+                //The two most common error numbers when connecting are as follows:
+                //0: Cannot connect to server.
+                //1045: Invalid user name and/or password.
+                switch (ex.Number)
+                {
+                    case 0:
+                        MessageBox.Show("Cannot connect to server.  Contact administrator");
+                        break;
+
+                    case 1045:
+                        MessageBox.Show("Invalid username/password, please try again");
+                        break;
+                }
+                //return false;
+            }
         }
+
+        private void txtName_TextChanged(object sender, EventArgs e)
+        {
+            lblStatus.Text = "receiving new name";
+        }
+    }
     }

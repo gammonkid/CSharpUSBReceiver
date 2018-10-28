@@ -36,7 +36,7 @@ using System.Text;
 using System.Diagnostics;
 
 namespace WFF_Generic_HID_Demo_3
-    {
+{
     using usbGenericHidCommunications;
 
     /// <summary>
@@ -49,22 +49,22 @@ namespace WFF_Generic_HID_Demo_3
     /// operations.
     /// </summary>
     class usbDemoDevice : usbGenericHidCommunication
-        {
+    {
         /// <summary>
         /// Class constructor - place any initialisation here
 
-        public Queue xQ = new Queue();
-        public Queue yQ = new Queue();
-        public Queue zQ = new Queue();
+        public int[] xArray = new int[64];
+        public int[] yArray = new int[64];
+        public int[] zArray = new int[64];
         /// </summary>
         /// <param name="vid"></param>
         /// <param name="pid"></param>
         public usbDemoDevice(int vid, int pid) : base(vid, pid)
-            {
-            }
+        {
+        }
 
         public bool toggleLedState()
-            {
+        {
             // Command 0x80 - Toggle LED state
 
             // Declare our output buffer
@@ -83,86 +83,174 @@ namespace WFF_Generic_HID_Demo_3
             // We can't tell if the device receieved the data ok, we are
             // only indicating that the write was error free.
             return success;
-            }
+        }
 
 
-        public int readData()
-            {
+        public void readXData()
+        {
             // Command 0x81 - Read the push button state
 
             // Declare our output buffer
             //StreamWriter writer;
             //writer = File.AppendText("c:\\Users\\gammo\\Desktop\\txtdataKBTest.txt");
-
+            int x = 0;
+            int total = 0;
             Byte[] outputBuffer = new Byte[65];
 
             // Declare our input buffer
             Byte[] inputBuffer = new Byte[65];
-
-            // Byte 0 must be set to 0
-            outputBuffer[0] = 0;
-
-            // Byte 1 must be set to our command
-            outputBuffer[1] = 0x81;
-
-            // Perform the write command
-            bool success;
-            success = writeRawReportToDevice(outputBuffer);
-
-            // Only proceed if the write was successful
-            if (success)
-                {
-                // Perform the read
-                success = readSingleReportFromDevice(ref inputBuffer);
-                }
-            int total = 0;
-            int i = 0;
-            int x = 0;
-            int num_of_packets = inputBuffer[2] * 3;
-            while (i<num_of_packets)
+            while (x != 64)
             {
-                /*if (x % 3 == 0)
+                // Byte 0 must be set to 0
+                outputBuffer[0] = 0;
+
+                // Byte 1 must be set to our command
+                outputBuffer[1] = 0x81;
+
+                // Perform the write command
+                bool success;
+                success = writeRawReportToDevice(outputBuffer);
+
+                // Only proceed if the write was successful
+                if (success)
                 {
-                    writer.Write("\r\n");
-                }*/
-                total = inputBuffer[i+3];
-                total = total | (inputBuffer[i+4] << 8);
-                if (x % 3 == 0)
-                {
-                    xQ.Enqueue(total);
-                    if(xQ.Count>250)
-                    {
-                        xQ.Dequeue();
-                    }
+                    // Perform the read
+                    success = readSingleReportFromDevice(ref inputBuffer);
                 }
-                if(x % 3 == 1)
+
+                int i = 1;
+
+                int num_of_packets = 65;
+                while (i < num_of_packets)
                 {
-                    yQ.Enqueue(total);
-                    if (yQ.Count > 250)
+                    /*if (x % 3 == 0)
                     {
-                        yQ.Dequeue();
-                    }
+                        writer.Write("\r\n");
+                    }*/
+                    total = inputBuffer[i];
+                    total = total | (inputBuffer[i + 1] << 8);
+                    xArray[x] = total;
+                    x += 1;
+                    i += 2;
+                    //writer.Write(total+" ");
+
                 }
-                if(x % 3 == 2)
-                {
-                    zQ.Enqueue(total);
-                    if (zQ.Count > 250)
-                    {
-                        zQ.Dequeue();
-                    }
-                }
-                x += 1;
-                i += 2;
-                //writer.Write(total+" ");
-                
             }
             //writer.Close();
 
-            return inputBuffer[2];
-            }
+            return;
+        }
+        public void readYData()
+        {
+            // Command 0x81 - Read the push button state
 
-        public bool readLedState()
+            // Declare our output buffer
+            //StreamWriter writer;
+            //writer = File.AppendText("c:\\Users\\gammo\\Desktop\\txtdataKBTest.txt");
+            int x = 0;
+            int total = 0;
+            Byte[] outputBuffer = new Byte[65];
+
+            // Declare our input buffer
+            Byte[] inputBuffer = new Byte[65];
+            while (x != 64)
             {
+                // Byte 0 must be set to 0
+                outputBuffer[0] = 0;
+
+                // Byte 1 must be set to our command
+                outputBuffer[1] = 0x82;
+
+                // Perform the write command
+                bool success;
+                success = writeRawReportToDevice(outputBuffer);
+
+                // Only proceed if the write was successful
+                if (success)
+                {
+                    // Perform the read
+                    success = readSingleReportFromDevice(ref inputBuffer);
+                }
+
+                int i = 1;
+
+                int num_of_packets = 65;
+                while (i < num_of_packets)
+                {
+                    /*if (x % 3 == 0)
+                    {
+                        writer.Write("\r\n");
+                    }*/
+                    total = inputBuffer[i];
+                    total = total | (inputBuffer[i + 1] << 8);
+                    yArray[x] = total;
+                    x += 1;
+                    i += 2;
+                    //writer.Write(total+" ");
+
+                }
+            }
+            //writer.Close();
+
+            return;
+        }
+        public void readZData()
+        {
+            // Command 0x81 - Read the push button state
+
+            // Declare our output buffer
+            //StreamWriter writer;
+            //writer = File.AppendText("c:\\Users\\gammo\\Desktop\\txtdataKBTest.txt");
+            int x = 0;
+            int total = 0;
+            Byte[] outputBuffer = new Byte[65];
+
+            // Declare our input buffer
+            Byte[] inputBuffer = new Byte[65];
+            while (x != 64)
+            {
+                // Byte 0 must be set to 0
+                outputBuffer[0] = 0;
+
+                // Byte 1 must be set to our command
+                outputBuffer[1] = 0x83;
+
+                // Perform the write command
+                bool success;
+                success = writeRawReportToDevice(outputBuffer);
+
+                // Only proceed if the write was successful
+                if (success)
+                {
+                    // Perform the read
+                    success = readSingleReportFromDevice(ref inputBuffer);
+                }
+
+                int i = 1;
+
+                int num_of_packets = 65;
+                while (i < num_of_packets)
+                {
+                    /*if (x % 3 == 0)
+                    {
+                        writer.Write("\r\n");
+                    }*/
+                    total = inputBuffer[i];
+                    total = total | (inputBuffer[i + 1] << 8);
+                    zArray[x] = total;
+                    x += 1;
+                    i += 2;
+                    //writer.Write(total+" ");
+
+                }
+            }
+            //writer.Close();
+
+            return;
+        }
+
+        public int readLedState()
+        {
             // Command 0x82 - Read the LED state
 
             // Declare our output buffer
@@ -175,7 +263,7 @@ namespace WFF_Generic_HID_Demo_3
             outputBuffer[0] = 0;
 
             // Byte 1 must be set to our command
-            outputBuffer[1] = 0x82;
+            outputBuffer[1] = 0x84;
 
             // Perform the write command
             bool success;
@@ -183,17 +271,17 @@ namespace WFF_Generic_HID_Demo_3
 
             // Only proceed if the write was successful
             if (success)
-                {
+            {
                 // Perform the read
                 success = readSingleReportFromDevice(ref inputBuffer);
-                }
-
-            if (inputBuffer[2]==0x01) return true; else return false;
             }
+
+            return inputBuffer[2];
+        }
 
         // Collect debug information from the device
         public String collectDebug()
-            {/*
+        {/*
             // Collect debug information from USB device
             Debug.WriteLine("Reference Application -> Collecting debug information from device");
 
@@ -219,9 +307,10 @@ namespace WFF_Generic_HID_Demo_3
             if (inputBuffer[1] == 0) return String.Empty;
 
             // Convert the Byte array into a string of the correct length
-            */string s=""; /*System.Text.ASCIIEncoding.ASCII.GetString(inputBuffer, 2, inputBuffer[1]);
+            */
+            string s = ""; /*System.Text.ASCIIEncoding.ASCII.GetString(inputBuffer, 2, inputBuffer[1]);
             */
             return s;
-            }
         }
     }
+}
