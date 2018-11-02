@@ -249,7 +249,7 @@ namespace WFF_Generic_HID_Demo_3
             return;
         }
 
-        public int readLedState()
+        public int getDeviceInfo(int index)//index 2 is packets, index 3 is jersey number
         {
             // Command 0x82 - Read the LED state
 
@@ -276,7 +276,7 @@ namespace WFF_Generic_HID_Demo_3
                 success = readSingleReportFromDevice(ref inputBuffer);
             }
 
-            return inputBuffer[2];
+            return inputBuffer[index];
         }
 
         // Collect debug information from the device

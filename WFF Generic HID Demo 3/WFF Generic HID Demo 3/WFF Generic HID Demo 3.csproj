@@ -50,11 +50,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="Players.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Players.Designer.cs">
+      <DependentUpon>Players.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Teams.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Teams.Designer.cs">
+      <DependentUpon>Teams.cs</DependentUpon>
     </Compile>
     <Compile Include="Form2.cs">
       <SubType>Form</SubType>
@@ -67,8 +73,11 @@
     <Compile Include="usbDemoDevice.cs">
       <SubType>Component</SubType>
     </Compile>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="Players.resx">
+      <DependentUpon>Players.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Teams.resx">
+      <DependentUpon>Teams.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form2.resx">
       <DependentUpon>Form2.cs</DependentUpon>

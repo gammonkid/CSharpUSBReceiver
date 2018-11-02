@@ -43,9 +43,10 @@ using MySql.Data.MySqlClient;
 
 namespace WFF_Generic_HID_Demo_3
     {
-    public partial class Form1 : Form
+    public partial class Teams : Form
         {
-        List<TextBox> teamNames = new List<TextBox>();
+        private List<TextBox> teamNames = new List<TextBox>();
+        private List<Button> teamNameButton = new List<Button>();
         private MySqlConnection myConnection;
         private string server;
         private string database;
@@ -54,16 +55,16 @@ namespace WFF_Generic_HID_Demo_3
         private int year = DateTime.Now.Year;
         private Panel scrollGroup = new Panel();
         private int YOffset = 0;
-        private int index = 0;
+        private int index = 1;
 
-        public Form1()
+        public Teams()
             {
             InitializeComponent();
             lblYear.Text += year.ToString();
             
             scrollGroup.AutoScroll = true;
             scrollGroup.Location = new System.Drawing.Point(0, 0);
-            scrollGroup.Size = new System.Drawing.Size(100, 350);
+            scrollGroup.Size = new System.Drawing.Size(250, 350);
             server = "localhost";
             database = "concussion";
             uid = "root";
@@ -77,33 +78,49 @@ namespace WFF_Generic_HID_Demo_3
             {
                 if (myConnection.State != ConnectionState.Open)
                     myConnection.Open();
-                //label1.Text = "connection opened";
-                string sqlcmd = "select * from teams";
+                label1.Text = "connection opened";
+                string sqlcmd = "CREATE TABLE IF NOT EXISTS `teams` (team_id int(50) NOT NULL auto_increment primary key,name varchar(25),year int(4)) ENGINE = MEMORY; ";
                 MySqlCommand cmd = new MySqlCommand(sqlcmd, myConnection);
                 MySqlDataReader dr = cmd.ExecuteReader();
+                myConnection.Close();
+
+
+                myConnection.Open();
+                 sqlcmd = "select * from teams";
+                 cmd = new MySqlCommand(sqlcmd, myConnection);
+                 dr = cmd.ExecuteReader();
                 
                 while (dr.Read())
                 {
                     TextBox team = new TextBox();
-
+                    Button teamButton = new Button();
                     //Country countr = new Country();
                     //city.Name = index.ToString();
                     //countr.Code = dr["Code"].ToString();
                     //countr.Name = city.Text = dr["Name"].ToString();
                     //countr.Population = Convert.ToInt32(dr["Population"]);
+                    teamButton.Text = "players";
+                    teamButton.Location = new System.Drawing.Point(120, YOffset);
+                    teamButton.Name = index.ToString();
+                    teamButton.AutoSize = true;
                     team.Text = dr["name"].ToString();
-                    team.Name = index.ToString();
-                    team.Location = new System.Drawing.Point(0, YOffset); ;
+                    //team.Name = index.ToString();
+                    team.Location = new System.Drawing.Point(0, YOffset);
+                    teamButton.Click += arbitraryLabelClicked;
                     teamNames.Add(team);
+                    teamNameButton.Add(teamButton);
                     //countryList.Add(countr);
-                    YOffset += 20;
-                    team.Click += arbitraryLabelClicked;
+                    YOffset += 30;
+                    
 
                     index++;
                 }
+                int i = 0;
                 foreach (TextBox text in teamNames)
                 {
                     scrollGroup.Controls.Add(text);
+                    scrollGroup.Controls.Add(teamNameButton[i]);
+                    i++;
                 }
                 this.Controls.Add(scrollGroup);
                 myConnection.Close();
@@ -144,12 +161,12 @@ namespace WFF_Generic_HID_Demo_3
         private void arbitraryLabelClicked(object sender, EventArgs e)
         {
 
-            TextBox txt = sender as TextBox;
-            MessageBox.Show(txt.Text);
+            Button btn = sender as Button;
+            //MessageBox.Show(btn.Name);
            // MessageBox.Show(countryList[Convert.ToInt32(txt.Name)].Code);
             //Country selected = countryList.FindLast(x => x.Name.Contains(txt.Text));
-            //Cities c = new Cities(selected, myConnection);
-            //c.Show();
+            Players p = new Players(Convert.ToInt32(btn.Name), myConnection);
+            p.Show();
             //this.Visible = false;
             //if (c.IsDisposed)
             //{
@@ -233,69 +250,84 @@ namespace WFF_Generic_HID_Demo_3
 
         private void button2_Click(object sender, EventArgs e)
         {
-            lblStatus.Text = "attempting to send";
-            try
+            if (lblStatus.Text != "waiting"&&lblStatus.Text!= "send successful")
             {
-                if (myConnection.State != ConnectionState.Open)
-                    myConnection.Open();
-                //label1.Text = "connection opened";
-                string sqlcmd = "INSERT INTO teams(name,year) VALUES('" + txtName.Text + "'," + year + ")";
-                MySqlCommand cmd = new MySqlCommand(sqlcmd, myConnection);
-                MySqlDataReader dr = cmd.ExecuteReader();
-                myConnection.Close();
-                
-                timer1.Enabled = true;
-
-                TextBox team = new TextBox();
-
-                //Country countr = new Country();
-                //city.Name = index.ToString();
-                //countr.Code = dr["Code"].ToString();
-                //countr.Name = city.Text = dr["Name"].ToString();
-                //countr.Population = Convert.ToInt32(dr["Population"]);
-                team.Text = txtName.Text;
-                team.Name = index.ToString();
-                int previous = index - 1;
-                scrollGroup.ScrollControlIntoView(teamNames[0]);
-                team.Location = new System.Drawing.Point(0, YOffset);
-                
-                //countryList.Add(countr);
-                YOffset += 20;
-                team.Click += arbitraryLabelClicked;
-                scrollGroup.Controls.Add(team);
-                index++;
-                txtName.Text = "";
-                lblStatus.Text = "send successful";
-
-
-
-
-            }
-            catch (MySqlException ex)
-            {
-                lblStatus.Text = "send not successful";
-                //When handling errors, you can your application's response based 
-                //on the error number.
-                //The two most common error numbers when connecting are as follows:
-                //0: Cannot connect to server.
-                //1045: Invalid user name and/or password.
-                switch (ex.Number)
+                lblStatus.Text = "attempting to send";
+                try
                 {
-                    case 0:
-                        MessageBox.Show("Cannot connect to server.  Contact administrator");
-                        break;
+                    if (myConnection.State != ConnectionState.Open)
+                        myConnection.Open();
+                    //label1.Text = "connection opened";
+                    string sqlcmd = "INSERT INTO teams(name,year) VALUES('" + txtName.Text + "'," + year + ")";
+                    MySqlCommand cmd = new MySqlCommand(sqlcmd, myConnection);
+                    MySqlDataReader dr = cmd.ExecuteReader();
+                    myConnection.Close();
 
-                    case 1045:
-                        MessageBox.Show("Invalid username/password, please try again");
-                        break;
+                    
+
+                    TextBox team = new TextBox();
+                    Button teamButton = new Button();
+                    teamButton.Text = "players";
+                    teamButton.Location = new System.Drawing.Point(120, YOffset);
+                    teamButton.Name = index.ToString();
+                    teamButton.AutoSize = true;
+                    team.Text = txtName.Text;
+                    team.Name = index.ToString();
+                    if(index>10)
+                    scrollGroup.ScrollControlIntoView(teamNames[0]);
+                    team.Location = new System.Drawing.Point(0, YOffset);
+
+                    //countryList.Add(countr);
+                    YOffset += 30;
+                    teamButton.Click += arbitraryLabelClicked;
+                    scrollGroup.Controls.Add(team);
+                    scrollGroup.Controls.Add(teamButton);
+                    index++;
+                    txtName.Text = "";
+                    timer1.Enabled = true;
+                    lblStatus.Text = "send successful";
+
+
+
+
                 }
-                //return false;
+                catch (MySqlException ex)
+                {
+                    lblStatus.Text = "send not successful";
+                    //When handling errors, you can your application's response based 
+                    //on the error number.
+                    //The two most common error numbers when connecting are as follows:
+                    //0: Cannot connect to server.
+                    //1045: Invalid user name and/or password.
+                    switch (ex.Number)
+                    {
+                        case 0:
+                            MessageBox.Show("Cannot connect to server.  Contact administrator");
+                            break;
+
+                        case 1045:
+                            MessageBox.Show("Invalid username/password, please try again");
+                            break;
+                    }
+                    //return false;
+                }
             }
         }
 
         private void txtName_TextChanged(object sender, EventArgs e)
         {
-            lblStatus.Text = "receiving new name";
+            if (timer1.Enabled)
+            {
+                timer1.Enabled = false;
+            }
+            if (txtName.Text == "")
+            {
+                lblStatus.Text = "waiting";
+            }
+            else
+            {
+                lblStatus.Text = "receiving new name";
+            }
         }
     }
     }

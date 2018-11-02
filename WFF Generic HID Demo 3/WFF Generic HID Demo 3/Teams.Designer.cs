@@ -1,6 +1,6 @@
 ﻿namespace WFF_Generic_HID_Demo_3
     {
-    partial class Form1
+    partial class Teams
         {
         /// <summary>
         /// Required designer variable.
@@ -199,7 +199,7 @@
             this.groupBox1.Controls.Add(this.txtName);
             this.groupBox1.Controls.Add(this.lblYear);
             this.groupBox1.Controls.Add(this.button2);
-            this.groupBox1.Location = new System.Drawing.Point(192, 42);
+            this.groupBox1.Location = new System.Drawing.Point(268, 19);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(200, 129);
             this.groupBox1.TabIndex = 19;
