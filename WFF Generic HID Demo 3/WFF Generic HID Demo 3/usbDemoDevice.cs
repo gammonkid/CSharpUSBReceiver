@@ -85,6 +85,29 @@ namespace WFF_Generic_HID_Demo_3
             return success;
         }
 
+        public bool setPlayerId(int value)
+        {
+            // Command 0x80 - Toggle LED state
+
+            // Declare our output buffer
+            Byte[] outputBuffer = new Byte[65];
+
+            // Byte 0 must be set to 0
+            outputBuffer[0] = 0;
+
+            // Byte 1 must be set to our command
+            outputBuffer[1] = 0x85;
+            outputBuffer[2] = Convert.ToByte(value);
+
+            // Perform the write command
+            bool success;
+            success = writeRawReportToDevice(outputBuffer);
+
+            // We can't tell if the device receieved the data ok, we are
+            // only indicating that the write was error free.
+            return success;
+        }
+
 
         public void readXData()
         {

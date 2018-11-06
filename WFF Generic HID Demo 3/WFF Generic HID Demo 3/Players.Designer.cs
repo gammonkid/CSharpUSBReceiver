@@ -49,14 +49,37 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.lblGameAss = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.btn_sendData = new System.Windows.Forms.Button();
             this.lblAssociatedPlayer = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.lblPacketLength = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.lblConnectionStatus = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
+            this.tmr_pollDevice = new System.Windows.Forms.Timer(this.components);
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.btnSubmitGame = new System.Windows.Forms.Button();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.lblOutcome = new System.Windows.Forms.Label();
+            this.txtTheirScore = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.txtMyScore = new System.Windows.Forms.TextBox();
+            this.txtOpponent = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.grpBoxStats = new System.Windows.Forms.GroupBox();
+            this.lblMaxHitText = new System.Windows.Forms.Label();
+            this.lblAvgHitText = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.cmBoxGameSelect = new System.Windows.Forms.ComboBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label11 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            this.groupBox4.SuspendLayout();
+            this.grpBoxStats.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblTeamName
@@ -86,7 +109,7 @@
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Location = new System.Drawing.Point(274, 9);
+            this.groupBox1.Location = new System.Drawing.Point(293, 12);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(222, 154);
             this.groupBox1.TabIndex = 1;
@@ -277,13 +300,17 @@
             // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(583, 22);
+            this.dateTimePicker1.CustomFormat = "YYYY-MM-DD";
+            this.dateTimePicker1.Location = new System.Drawing.Point(6, 19);
             this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
+            this.dateTimePicker1.Size = new System.Drawing.Size(188, 20);
             this.dateTimePicker1.TabIndex = 2;
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.lblGameAss);
+            this.groupBox2.Controls.Add(this.label12);
+            this.groupBox2.Controls.Add(this.btn_sendData);
             this.groupBox2.Controls.Add(this.lblAssociatedPlayer);
             this.groupBox2.Controls.Add(this.label9);
             this.groupBox2.Controls.Add(this.lblPacketLength);
@@ -292,15 +319,43 @@
             this.groupBox2.Controls.Add(this.label6);
             this.groupBox2.Location = new System.Drawing.Point(274, 170);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(222, 205);
+            this.groupBox2.Size = new System.Drawing.Size(262, 205);
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Device Connection Status";
             // 
+            // lblGameAss
+            // 
+            this.lblGameAss.AutoSize = true;
+            this.lblGameAss.Location = new System.Drawing.Point(104, 97);
+            this.lblGameAss.Name = "lblGameAss";
+            this.lblGameAss.Size = new System.Drawing.Size(31, 13);
+            this.lblGameAss.TabIndex = 8;
+            this.lblGameAss.Text = "none";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(6, 97);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(92, 13);
+            this.label12.TabIndex = 7;
+            this.label12.Text = "game association:";
+            // 
+            // btn_sendData
+            // 
+            this.btn_sendData.Location = new System.Drawing.Point(66, 118);
+            this.btn_sendData.Name = "btn_sendData";
+            this.btn_sendData.Size = new System.Drawing.Size(75, 23);
+            this.btn_sendData.TabIndex = 6;
+            this.btn_sendData.Text = "Send Data";
+            this.btn_sendData.UseVisualStyleBackColor = true;
+            this.btn_sendData.Click += new System.EventHandler(this.btn_sendData_Click);
+            // 
             // lblAssociatedPlayer
             // 
             this.lblAssociatedPlayer.AutoSize = true;
-            this.lblAssociatedPlayer.Location = new System.Drawing.Point(144, 70);
+            this.lblAssociatedPlayer.Location = new System.Drawing.Point(106, 70);
             this.lblAssociatedPlayer.Name = "lblAssociatedPlayer";
             this.lblAssociatedPlayer.Size = new System.Drawing.Size(31, 13);
             this.lblAssociatedPlayer.TabIndex = 5;
@@ -309,7 +364,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(49, 70);
+            this.label9.Location = new System.Drawing.Point(6, 70);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(94, 13);
             this.label9.TabIndex = 4;
@@ -336,7 +391,7 @@
             // lblConnectionStatus
             // 
             this.lblConnectionStatus.AutoSize = true;
-            this.lblConnectionStatus.Location = new System.Drawing.Point(140, 16);
+            this.lblConnectionStatus.Location = new System.Drawing.Point(143, 16);
             this.lblConnectionStatus.Name = "lblConnectionStatus";
             this.lblConnectionStatus.Size = new System.Drawing.Size(76, 13);
             this.lblConnectionStatus.TabIndex = 1;
@@ -345,19 +400,219 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(46, 16);
+            this.label6.Location = new System.Drawing.Point(6, 16);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(97, 13);
             this.label6.TabIndex = 0;
             this.label6.Text = "Device is currently:";
+            // 
+            // tmr_pollDevice
+            // 
+            this.tmr_pollDevice.Interval = 1000;
+            this.tmr_pollDevice.Tick += new System.EventHandler(this.tmr_pollDevice_Tick);
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.btnSubmitGame);
+            this.groupBox3.Controls.Add(this.groupBox4);
+            this.groupBox3.Controls.Add(this.txtOpponent);
+            this.groupBox3.Controls.Add(this.label8);
+            this.groupBox3.Controls.Add(this.dateTimePicker1);
+            this.groupBox3.Location = new System.Drawing.Point(605, 221);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(200, 154);
+            this.groupBox3.TabIndex = 4;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "new Game";
+            // 
+            // btnSubmitGame
+            // 
+            this.btnSubmitGame.Location = new System.Drawing.Point(73, 126);
+            this.btnSubmitGame.Name = "btnSubmitGame";
+            this.btnSubmitGame.Size = new System.Drawing.Size(75, 23);
+            this.btnSubmitGame.TabIndex = 6;
+            this.btnSubmitGame.Text = "submit";
+            this.btnSubmitGame.UseVisualStyleBackColor = true;
+            this.btnSubmitGame.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.lblOutcome);
+            this.groupBox4.Controls.Add(this.txtTheirScore);
+            this.groupBox4.Controls.Add(this.label10);
+            this.groupBox4.Controls.Add(this.txtMyScore);
+            this.groupBox4.Location = new System.Drawing.Point(10, 69);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(184, 54);
+            this.groupBox4.TabIndex = 5;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "score";
+            // 
+            // lblOutcome
+            // 
+            this.lblOutcome.AutoSize = true;
+            this.lblOutcome.Location = new System.Drawing.Point(71, 41);
+            this.lblOutcome.Name = "lblOutcome";
+            this.lblOutcome.Size = new System.Drawing.Size(50, 13);
+            this.lblOutcome.TabIndex = 3;
+            this.lblOutcome.Text = "no Score";
+            // 
+            // txtTheirScore
+            // 
+            this.txtTheirScore.Location = new System.Drawing.Point(128, 18);
+            this.txtTheirScore.Name = "txtTheirScore";
+            this.txtTheirScore.Size = new System.Drawing.Size(50, 20);
+            this.txtTheirScore.TabIndex = 2;
+            this.txtTheirScore.TextChanged += new System.EventHandler(this.txtTheirScore_TextChanged);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(84, 22);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(16, 13);
+            this.label10.TabIndex = 1;
+            this.label10.Text = "---";
+            // 
+            // txtMyScore
+            // 
+            this.txtMyScore.Location = new System.Drawing.Point(7, 19);
+            this.txtMyScore.Name = "txtMyScore";
+            this.txtMyScore.Size = new System.Drawing.Size(50, 20);
+            this.txtMyScore.TabIndex = 0;
+            this.txtMyScore.TextChanged += new System.EventHandler(this.txtMyScore_TextChanged);
+            // 
+            // txtOpponent
+            // 
+            this.txtOpponent.Location = new System.Drawing.Point(73, 43);
+            this.txtOpponent.Name = "txtOpponent";
+            this.txtOpponent.Size = new System.Drawing.Size(100, 20);
+            this.txtOpponent.TabIndex = 4;
+            this.txtOpponent.TextChanged += new System.EventHandler(this.txtOpponent_TextChanged);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(7, 46);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(60, 13);
+            this.label8.TabIndex = 3;
+            this.label8.Text = "Opponent -";
+            // 
+            // grpBoxStats
+            // 
+            this.grpBoxStats.Controls.Add(this.lblMaxHitText);
+            this.grpBoxStats.Controls.Add(this.lblAvgHitText);
+            this.grpBoxStats.Controls.Add(this.label14);
+            this.grpBoxStats.Controls.Add(this.cmBoxGameSelect);
+            this.grpBoxStats.Location = new System.Drawing.Point(542, 13);
+            this.grpBoxStats.Name = "grpBoxStats";
+            this.grpBoxStats.Size = new System.Drawing.Size(327, 202);
+            this.grpBoxStats.TabIndex = 5;
+            this.grpBoxStats.TabStop = false;
+            this.grpBoxStats.Text = "Game Stats for All Players";
+            // 
+            // lblMaxHitText
+            // 
+            this.lblMaxHitText.AutoSize = true;
+            this.lblMaxHitText.Location = new System.Drawing.Point(10, 66);
+            this.lblMaxHitText.Name = "lblMaxHitText";
+            this.lblMaxHitText.Size = new System.Drawing.Size(133, 13);
+            this.lblMaxHitText.TabIndex = 18;
+            this.lblMaxHitText.Text = "Maximum Hit for All Players";
+            // 
+            // lblAvgHitText
+            // 
+            this.lblAvgHitText.AutoSize = true;
+            this.lblAvgHitText.Location = new System.Drawing.Point(10, 42);
+            this.lblAvgHitText.Name = "lblAvgHitText";
+            this.lblAvgHitText.Size = new System.Drawing.Size(129, 13);
+            this.lblAvgHitText.TabIndex = 17;
+            this.lblAvgHitText.Text = "Average Hit for All Players";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(7, 18);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(81, 13);
+            this.label14.TabIndex = 16;
+            this.label14.Text = "selected Game:";
+            // 
+            // cmBoxGameSelect
+            // 
+            this.cmBoxGameSelect.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.cmBoxGameSelect.FormattingEnabled = true;
+            this.cmBoxGameSelect.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.cmBoxGameSelect.Location = new System.Drawing.Point(94, 15);
+            this.cmBoxGameSelect.Name = "cmBoxGameSelect";
+            this.cmBoxGameSelect.Size = new System.Drawing.Size(227, 21);
+            this.cmBoxGameSelect.TabIndex = 15;
+            this.cmBoxGameSelect.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged_1);
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.comboBox1.Items.AddRange(new object[] {
+            "All Players",
+            "QB",
+            "RB",
+            "FB",
+            "WR",
+            "TE",
+            "OL",
+            "C",
+            "G",
+            "LG",
+            "RG",
+            "T",
+            "LT",
+            "RT",
+            "K",
+            "KR",
+            "DL",
+            "DE",
+            "DT",
+            "NT",
+            "LB",
+            "ILB",
+            "OLB",
+            "MLB",
+            "DB",
+            "CB",
+            "FS",
+            "SS",
+            "S",
+            "P",
+            "PR"});
+            this.comboBox1.Location = new System.Drawing.Point(107, 6);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(100, 21);
+            this.comboBox1.TabIndex = 15;
+            this.comboBox1.Text = "All Players";
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged_2);
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(81, 9);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(29, 13);
+            this.label11.TabIndex = 16;
+            this.label11.Text = "filter:";
             // 
             // Players
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(899, 398);
+            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.grpBoxStats);
+            this.Controls.Add(this.label11);
+            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.lblTeamName);
             this.Name = "Players";
@@ -366,6 +621,12 @@
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
+            this.grpBoxStats.ResumeLayout(false);
+            this.grpBoxStats.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -399,5 +660,25 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label lblPacketLength;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button btn_sendData;
+        private System.Windows.Forms.Timer tmr_pollDevice;
+        private System.Windows.Forms.ComboBox cmBoxGameSelect;
+        private System.Windows.Forms.Label lblGameAss;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.Button btnSubmitGame;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.Label lblOutcome;
+        private System.Windows.Forms.TextBox txtTheirScore;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox txtMyScore;
+        private System.Windows.Forms.TextBox txtOpponent;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.GroupBox grpBoxStats;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label lblMaxHitText;
+        private System.Windows.Forms.Label lblAvgHitText;
     }
 }

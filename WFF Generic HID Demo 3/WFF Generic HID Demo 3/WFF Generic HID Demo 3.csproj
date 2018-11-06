@@ -50,6 +50,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Collisions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Collisions.Designer.cs">
+      <DependentUpon>Collisions.cs</DependentUpon>
+    </Compile>
     <Compile Include="Players.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -73,6 +79,9 @@
     <Compile Include="usbDemoDevice.cs">
       <SubType>Component</SubType>
     </Compile>
+    <EmbeddedResource Include="Collisions.resx">
+      <DependentUpon>Collisions.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Players.resx">
       <DependentUpon>Players.cs</DependentUpon>
     </EmbeddedResource>
