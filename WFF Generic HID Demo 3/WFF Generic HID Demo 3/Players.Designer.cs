@@ -69,12 +69,16 @@
             this.txtOpponent = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.grpBoxStats = new System.Windows.Forms.GroupBox();
+            this.lblMax = new System.Windows.Forms.Label();
+            this.lblAvg = new System.Windows.Forms.Label();
             this.lblMaxHitText = new System.Windows.Forms.Label();
             this.lblAvgHitText = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.cmBoxGameSelect = new System.Windows.Forms.ComboBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label11 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.lblMaxHitName = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -501,6 +505,10 @@
             // 
             // grpBoxStats
             // 
+            this.grpBoxStats.Controls.Add(this.lblMaxHitName);
+            this.grpBoxStats.Controls.Add(this.label13);
+            this.grpBoxStats.Controls.Add(this.lblMax);
+            this.grpBoxStats.Controls.Add(this.lblAvg);
             this.grpBoxStats.Controls.Add(this.lblMaxHitText);
             this.grpBoxStats.Controls.Add(this.lblAvgHitText);
             this.grpBoxStats.Controls.Add(this.label14);
@@ -511,6 +519,24 @@
             this.grpBoxStats.TabIndex = 5;
             this.grpBoxStats.TabStop = false;
             this.grpBoxStats.Text = "Game Stats for All Players";
+            // 
+            // lblMax
+            // 
+            this.lblMax.AutoSize = true;
+            this.lblMax.Location = new System.Drawing.Point(160, 66);
+            this.lblMax.Name = "lblMax";
+            this.lblMax.Size = new System.Drawing.Size(41, 13);
+            this.lblMax.TabIndex = 20;
+            this.lblMax.Text = "label15";
+            // 
+            // lblAvg
+            // 
+            this.lblAvg.AutoSize = true;
+            this.lblAvg.Location = new System.Drawing.Point(160, 42);
+            this.lblAvg.Name = "lblAvg";
+            this.lblAvg.Size = new System.Drawing.Size(41, 13);
+            this.lblAvg.TabIndex = 19;
+            this.lblAvg.Text = "label13";
             // 
             // lblMaxHitText
             // 
@@ -603,6 +629,24 @@
             this.label11.TabIndex = 16;
             this.label11.Text = "filter:";
             // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(13, 93);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(65, 13);
+            this.label13.TabIndex = 21;
+            this.label13.Text = "Suffered By:";
+            // 
+            // lblMaxHitName
+            // 
+            this.lblMaxHitName.AutoSize = true;
+            this.lblMaxHitName.Location = new System.Drawing.Point(85, 93);
+            this.lblMaxHitName.Name = "lblMaxHitName";
+            this.lblMaxHitName.Size = new System.Drawing.Size(43, 13);
+            this.lblMaxHitName.TabIndex = 22;
+            this.lblMaxHitName.Text = "no data";
+            // 
             // Players
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -680,5 +724,9 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label lblMaxHitText;
         private System.Windows.Forms.Label lblAvgHitText;
+        private System.Windows.Forms.Label lblAvg;
+        private System.Windows.Forms.Label lblMax;
+        private System.Windows.Forms.Label lblMaxHitName;
+        private System.Windows.Forms.Label label13;
     }
 }

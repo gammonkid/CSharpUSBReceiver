@@ -32,6 +32,7 @@ namespace WFF_Generic_HID_Demo_3
         private List<string> GameString = new List<string>();
         private List<int> gameIndex = new List<int>();
         private int newGameCounter=0;
+        private int wait = 0;
         //private int jerseyNumber = 0;
         public Players(int index, MySqlConnection conn)
         {
@@ -45,7 +46,8 @@ namespace WFF_Generic_HID_Demo_3
             scrollGroup.Size = new System.Drawing.Size(275, 350);
             this.Draw_Screen();
             this.drawComboBox();
-           
+            this.updateSqlQueries();
+            wait = 1;
 
             theUsbDemoDevice = new usbDemoDevice(0x04D8, 0x003F);
 
@@ -592,8 +594,16 @@ namespace WFF_Generic_HID_Demo_3
                     string xStore = "";
                     string yStore = "";
                     string zStore = "";
+                    int maxVal = 0;
+                    int x = 0;
                     foreach (int i in theUsbDemoDevice.xArray)
                     {
+                        int newVal = theUsbDemoDevice.xArray[x] + theUsbDemoDevice.yArray[x] + theUsbDemoDevice.zArray[x];
+                        if (newVal > maxVal)
+                        {
+                            maxVal = newVal;
+                        }
+                        x++;
                         if (i >= 1000)
                         {
                             xStore += 999.ToString() + " ";
@@ -626,10 +636,19 @@ namespace WFF_Generic_HID_Demo_3
                     {
                         if (myConnection.State != ConnectionState.Open)
                             myConnection.Open();
-                        //label1.Text = "connection opened";
-                        string sqlcmd = "INSERT INTO collisions(player_id,x,y,z) VALUES(" + connectedPlayerIndex + ",'" + xStore + "','" + yStore + "','" + zStore + "')";
+
+                        
+                            //label1.Text = "connection opened";
+                        string sqlcmd = "CREATE TABLE IF NOT EXISTS `collisions` (collision_id int(50) NOT NULL auto_increment primary key,player_id int(50) ,game_id int(50),maxVal int(50), `x` varchar(256),`y` varchar(256),`z` varchar(256),foreign key(player_id) references players(player_id) on delete cascade) ENGINE = MEMORY; ";
                         MySqlCommand cmd = new MySqlCommand(sqlcmd, myConnection);
                         MySqlDataReader dr = cmd.ExecuteReader();
+                         myConnection.Close();
+
+                        myConnection.Open();
+                        //label1.Text = "connection opened";
+                         sqlcmd = "INSERT INTO collisions(player_id,game_id,maxVal,x,y,z) VALUES(" + connectedPlayerIndex + ","+gameIndex[cmBoxGameSelect.SelectedIndex]+","+maxVal+",'" + xStore + "','" + yStore + "','" + zStore + "')";
+                         cmd = new MySqlCommand(sqlcmd, myConnection);
+                         dr = cmd.ExecuteReader();
                         myConnection.Close();
 
 
@@ -667,8 +686,101 @@ namespace WFF_Generic_HID_Demo_3
         {
             //ComboBox cmbx = sender as ComboBox;
             // MessageBox.Show(gameIndex[cmbx.SelectedIndex].ToString());
+            if (wait == 1)
+            {
+                this.updateSqlQueries();
+            }
             lblGameAss.Text = GameString[cmBoxGameSelect.SelectedIndex];
             //call function to check combobox indexs
+        }
+
+        private void updateSqlQueries()
+        {
+            try
+            {
+                if (myConnection.State != ConnectionState.Open)
+                    myConnection.Open();
+                string sqlcmd;
+                string PositionConstraint = "";
+                string gameConstraint = "";
+                if (cmBoxGameSelect.SelectedIndex!=0)
+                {
+                    gameConstraint= " AND game_id=" + gameIndex[cmBoxGameSelect.SelectedIndex];
+                }
+                if(comboBox1.Text!="All Players")
+                {
+                    PositionConstraint = " AND position='" + comboBox1.Text + "'";
+                }
+                
+                sqlcmd = "Select MAX(maxVal) FROM collisions Where player_id=any(SELECT player_id FROM players WHERE team_id=" + team_id + PositionConstraint+")"+gameConstraint;
+                //sqlcmd = "select max(maxVal) from collisions where player_id = any(select player_id from players where team_id=1)";
+                //MessageBox.Show(sqlcmd);
+                MySqlCommand cmd = new MySqlCommand(sqlcmd, myConnection);
+                //MessageBox.Show(cmd.ExecuteScalar().ToString());
+                if (int.TryParse(cmd.ExecuteScalar().ToString(),out int maxVal))
+                {
+                    lblMax.Text = maxVal.ToString();
+                }
+                else
+                {
+                    lblMax.Text = "no data";
+                }
+                myConnection.Close();
+                myConnection.Open();
+
+                sqlcmd = "Select * from players where player_id=any(Select player_id from collisions where maxVal=(Select MAX(maxVal) FROM collisions Where player_id=any(SELECT player_id FROM players WHERE team_id=" + team_id + PositionConstraint + ")" + gameConstraint+"))";
+                //sqlcmd = "select max(maxVal) from collisions where player_id = any(select player_id from players where team_id=1)";
+                //MessageBox.Show(sqlcmd);
+                cmd = new MySqlCommand(sqlcmd, myConnection);
+                //MessageBox.Show(cmd.ExecuteScalar().ToString());
+                MySqlDataReader dr= cmd.ExecuteReader();
+                if (dr.HasRows)
+                {
+                    dr.Read();
+                    lblMaxHitName.Text=dr["first_name"].ToString()+" "+dr["last_name"].ToString();
+                }
+                else
+                {
+                    lblMaxHitName.Text = "no data";
+                }
+                myConnection.Close();
+                myConnection.Open();
+                sqlcmd = "Select AVG(maxVal) FROM collisions Where player_id=any(SELECT player_id FROM players WHERE team_id=" + team_id + PositionConstraint + ")" + gameConstraint;
+                cmd = new MySqlCommand(sqlcmd, myConnection);
+                //MessageBox.Show(cmd.ExecuteScalar().ToString());
+                if (double.TryParse(cmd.ExecuteScalar().ToString(), out double avgVal))
+                {
+                    lblAvg.Text = avgVal.ToString();
+                }
+                else
+                {
+                    lblAvg.Text = "no data";
+                }
+                
+                
+                    
+
+            }
+            catch (MySqlException ex)
+            {
+                //When handling errors, you can your application's response based 
+                //on the error number.
+                //The two most common error numbers when connecting are as follows:
+                //0: Cannot connect to server.
+                //1045: Invalid user name and/or password.
+                switch (ex.Number)
+                {
+                    case 0:
+                        MessageBox.Show("Cannot connect to server.  Contact administrator");
+                        break;
+
+                    case 1045:
+                        MessageBox.Show("Invalid username/password, please try again");
+                        break;
+                }
+                //return false;
+            }
+
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -825,6 +937,11 @@ namespace WFF_Generic_HID_Demo_3
             lblMaxHitText.Text = "Maximum Hit for" + comboBox1.Text;
             //calll function to change game stats
             //call function to change selected players
+            if (wait==1)
+            {
+                this.updateSqlQueries();
+            }
+            
             this.Draw_Screen();
 
         }
